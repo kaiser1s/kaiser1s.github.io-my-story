@@ -3,51 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaiser's Story</title>
+    <title>Kaiser | My Story</title>
     <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #00d2ff;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --card-bg: #161616;
+        }
+
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
             margin: 0;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
-            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nav Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+            position: fixed;
+            width: 80%;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
+            animation: fadeIn 1.5s ease;
         }
-        h1 {
-            font-size: 5rem;
-            letter-spacing: -2px;
-            margin: 0;
-            background: linear-gradient(to right, #00f2fe, #4facfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        h1 { font-size: clamp(3rem, 10vw, 6rem); margin: 0; line-height: 1; }
+        .accent-text { color: var(--accent); }
+
+        /* Sections */
+        section { padding: 100px 10%; }
+        h2 { font-size: 2.5rem; border-left: 4px solid var(--accent); padding-left: 20px; margin-bottom: 40px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
-        p {
-            font-size: 1.5rem;
-            color: #a0a0c0;
-            margin-top: 10px;
-        }
-        .btn {
-            margin-top: 30px;
-            padding: 12px 30px;
-            border: 1px solid #4facfe;
-            color: #4facfe;
-            text-decoration: none;
-            border-radius: 50px;
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #222;
             transition: 0.3s;
         }
-        .btn:hover {
-            background: #4facfe;
-            color: white;
+
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
+
+        .coming-soon { color: var(--accent); font-weight: bold; font-size: 0.9rem; letter-spacing: 1px; }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        footer { text-align: center; padding: 50px; color: var(--text-dim); border-top: 1px solid #222; }
     </style>
 </head>
 <body>
-    <h1>KAISER</h1>
-    <p>Loading the next chapter...</p>
-    <a href="#" class="btn">Work in Progress</a>
+
+    <nav>
+        <div class="logo">KAISER</div>
+        <div>[ My Story ]</div>
+    </nav>
+
+    <header>
+        <p class="coming-soon">DISCOVER THE JOURNEY</p>
+        <h1>Coming <span class="accent-text">Soon.</span></h1>
+        <p style="max-width: 600px; color: var(--text-dim);">I'm currently crafting a unique digital experience to share my projects, passions, and progress with the world.</p>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+            <p class="coming-soon">BIOGRAPHY UNDER CONSTRUCTION</p>
+            <p>I am a creator focused on pushing boundaries. Whether it's through code, design, or storytelling, I strive to build things that matter. Check back soon for a deeper look into my background and skills.</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Project Alpha</h3>
+                <p>An innovative solution currently in development.</p>
+                <span class="coming-soon">LOCKED</span>
+            </div>
+            <div class="card">
+                <h3>Project Beta</h3>
+                <p>Exploring new frontiers in digital interaction.</p>
+                <span class="coming-soon">LOCKED</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 KAISER. Built with passion.</p>
+    </footer>
+
 </body>
 </html>
