@@ -5,102 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itay's Space</title>
     <style>
-        /* Base Themes */
-        :root { --bg: #f4f4f4; --text: #333; --accent: #3498db; --card: #fff; }
-        [data-theme='black'] { --bg: #000; --text: #fff; --accent: #555; --card: #111; }
-        [data-theme='blue'] { --bg: #001f3f; --text: #fff; --accent: #7fdbff; --card: #003366; }
-        [data-theme='red'] { --bg: #4b0000; --text: #fff; --accent: #ff4136; --card: #800000; }
-        [data-theme='brown'] { --bg: #3e2723; --text: #efebe9; --accent: #d7ccc8; --card: #4e342e; }
+        /* Theme Variables */
+        :root { --bg: #f4f4f4; --text: #333; --accent: #3498db; --card: #fff; --sidebar: rgba(0,0,0,0.05); }
+        [data-theme='black'] { --bg: #000; --text: #fff; --accent: #555; --card: #111; --sidebar: #0a0a0a; }
+        [data-theme='blue'] { --bg: #001f3f; --text: #fff; --accent: #7fdbff; --card: #003366; --sidebar: #001a35; }
+        [data-theme='red'] { --bg: #4b0000; --text: #fff; --accent: #ff4136; --card: #800000; --sidebar: #3d0000; }
+        [data-theme='brown'] { --bg: #3e2723; --text: #efebe9; --accent: #d7ccc8; --card: #4e342e; --sidebar: #2d1b19; }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
             display: flex;
-            transition: 0.3s;
+            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* Sidebar Navigation */
         .sidebar {
-            width: 200px;
-            background: rgba(0,0,0,0.05);
+            width: 240px;
+            background: var(--sidebar);
+            padding: 30px 20px;
+            border-right: 1px solid rgba(125,125,125,0.2);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
             height: 100vh;
-            padding: 20px;
-            border-right: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            color: var(--accent);
         }
 
         .nav-btn {
             display: block;
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
             background: var(--accent);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             text-align: center;
             font-weight: bold;
+            font-size: 1rem;
+            transition: 0.2s;
         }
 
-        /* Main Content */
+        .nav-btn:hover {
+            opacity: 0.9;
+            transform: translateX(5px);
+        }
+
+        /* Main Content Area */
         .content {
             flex: 1;
-            padding: 50px;
+            margin-left: 280px; /* Offset for sidebar */
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .page { display: none; text-align: center; max-width: 600px; }
-        .active { display: block; }
+        .page {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
 
         .card {
             background: var(--card);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            line-height: 1.8;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .story-section {
+            margin-bottom: 25px;
+        }
+
+        .story-section strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-decoration: underline;
         }
 
         /* Theme Picker */
-        .themes { margin-top: 50px; }
+        .themes {
+            margin-top: 60px;
+            padding: 20px;
+            background: rgba(125,125,125,0.1);
+            border-radius: 50px;
+        }
+
         .dot {
-            height: 25px; width: 25px; border-radius: 50%; display: inline-block;
-            margin: 5px; cursor: pointer; border: 2px solid #fff;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 10px;
+            cursor: pointer;
+            border: 3px solid #fff;
+            transition: 0.2s;
+        }
+
+        .dot:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid rgba(125,125,125,0.2); }
+            .content { margin-left: 0; padding: 20px; }
         }
     </style>
 </head>
 <body data-theme="white">
 
     <div class="sidebar">
-        <h3>Menu</h3>
+        <h2>ITAY</h2>
         <button class="nav-btn" onclick="showPage('info')">Info About Myself</button>
+        <button class="nav-btn" onclick="showPage('story')">Times as a Kid</button>
     </div>
 
     <div class="content">
         <div id="info" class="page active">
             <div class="card">
                 <h1>Hello!</h1>
-                <p>I'm <strong>Itay</strong>. I'm 15 years old and I like developing codes in Minecraft.</p>
+                <p>I'm <strong>Itay</strong>. I'm 15 years old and I'm a developer who enjoys building codes in Minecraft.</p>
+                <p>I focus on creating my own projects and learning how to build better digital worlds every day.</p>
+            </div>
+        </div>
+
+        <div id="story" class="page">
+            <div class="card">
+                <h1>Times as a Kid</h1>
+                
+                <div class="story-section">
+                    <strong>The Beginning</strong>
+                    Hey let me tell you a story of how i was bullied for 5 years straight. When i was in first grade i was being bullied by Yarin and Leny. I was getting hurt by them close to every day in school but i didnt tell anyone. This was my biggest mistake yet; i decided to just let it go and it was like this for 3 whole years.
+                </div>
+
+                <div class="story-section">
+                    <strong>Finding an Ally</strong>
+                    Until something great happened: a new kid named Eitan joined our school. He was strong and he saw me being bullied and thats when he pulled a move. He helped me when i was being bullied and we were friends for a year.
+                </div>
+
+                <div class="story-section">
+                    <strong>The Struggle of Loyalty</strong>
+                    Then everything changed. A new kid named Ariel joined our school. He was very nice to me and only after 2 weeks we became best friends. We went to each others house at least 1 time a week. But after about a month, things started to break up. The bullies started being friends with him and he was scared he would also be bullied, so he left me. At this time the only kids I could trust were Nadav and Ori.
+                </div>
+
+                <div class="story-section">
+                    <strong>The Turning Point</strong>
+                    A year later, almost my whole class started to bully me—that included the girls and 50% of the boys. It was a very dark time where I felt like I had to hide who I was just to get through the day.
+                </div>
+
+                <div class="story-section">
+                    <strong>A Fresh Start</strong>
+                    Years later, I went to 7th grade and got into a sports class. This was a major change for me. Being in a new environment with a focus on sports and discipline helped me find a new level of confidence. I realized that my past didn't have to be my future. I started focusing on my interest in Minecraft and coding, building a world where I could be creative and safe. Now, at 15, I'm proud of how far I've come.
+                </div>
             </div>
         </div>
 
         <div class="themes">
-            <p>Pick a Theme:</p>
-            <span class="dot" style="background:#f4f4f4; border:1px solid #ccc" onclick="setTheme('white')"></span>
-            <span class="dot" style="background:#111" onclick="setTheme('black')"></span>
-            <span class="dot" style="background:#001f3f" onclick="setTheme('blue')"></span>
-            <span class="dot" style="background:#4b0000" onclick="setTheme('red')"></span>
-            <span class="dot" style="background:#3e2723" onclick="setTheme('brown')"></span>
+            <span class="dot" style="background:#f4f4f4; border-color:#ccc" title="White" onclick="setTheme('white')"></span>
+            <span class="dot" style="background:#111" title="Black" onclick="setTheme('black')"></span>
+            <span class="dot" style="background:#001f3f" title="Blue" onclick="setTheme('blue')"></span>
+            <span class="dot" style="background:#4b0000" title="Red" onclick="setTheme('red')"></span>
+            <span class="dot" style="background:#3e2723" title="Brown" onclick="setTheme('brown')"></span>
         </div>
     </div>
 
     <script>
         function showPage(pageId) {
-            // Hide all pages
+            // Hide all pages by removing the 'active' class
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Show the one we want
+            // Show the selected page
             document.getElementById(pageId).classList.add('active');
         }
 
