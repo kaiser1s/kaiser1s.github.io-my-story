@@ -6,55 +6,48 @@
     <title>Kaiser's Story</title>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            background-color: #050505;
-            color: #ffffff;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+            color: white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
-        }
-        .container {
             text-align: center;
-            border: 1px solid #333;
-            padding: 50px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
         }
         h1 {
-            font-size: 3rem;
+            font-size: 5rem;
+            letter-spacing: -2px;
             margin: 0;
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            background: linear-gradient(to right, #00f2fe, #4facfe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         p {
-            color: #888;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            color: #a0a0c0;
             margin-top: 10px;
         }
-        .status {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 5px 15px;
+        .btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            border: 1px solid #4facfe;
+            color: #4facfe;
+            text-decoration: none;
             border-radius: 50px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            font-size: 0.8rem;
-            color: #00ff88;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #4facfe;
+            color: white;
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>KAISER</h1>
-        <p>This is the beginning of my story.</p>
-        <div class="status">● Site Live</div>
-    </div>
-
+    <h1>KAISER</h1>
+    <p>Loading the next chapter...</p>
+    <a href="#" class="btn">Work in Progress</a>
 </body>
 </html>
