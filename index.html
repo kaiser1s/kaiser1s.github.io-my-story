@@ -65,7 +65,7 @@
         /* Main Content Area */
         .content {
             flex: 1;
-            margin-left: 280px; /* Offset for sidebar */
+            margin-left: 280px;
             padding: 60px 40px;
             display: flex;
             flex-direction: column;
@@ -79,9 +79,7 @@
             animation: fadeIn 0.4s ease-in-out;
         }
 
-        .active {
-            display: block;
-        }
+        .active { display: block; }
 
         .card {
             background: var(--card);
@@ -91,120 +89,186 @@
             line-height: 1.8;
         }
 
-        h1 {
-            margin-top: 0;
-            font-size: 2.5rem;
-            color: var(--accent);
+        h1 { margin-top: 0; font-size: 2.5rem; color: var(--accent); }
+        .story-section { margin-bottom: 25px; }
+        .story-section strong { display: block; font-size: 1.2rem; margin-bottom: 10px; text-decoration: underline; }
+
+        /* Discord Button */
+        .discord-btn {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .discord-btn:hover { background: #4752c4; transform: scale(1.05); }
+
+        /* Controls Section */
+        .controls {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
-        .story-section {
-            margin-bottom: 25px;
-        }
-
-        .story-section strong {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            text-decoration: underline;
-        }
-
-        /* Theme Picker */
-        .themes {
-            margin-top: 60px;
-            padding: 20px;
-            background: rgba(125,125,125,0.1);
-            border-radius: 50px;
+        .lang-picker select {
+            padding: 8px;
+            border-radius: 5px;
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--accent);
         }
 
         .dot {
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 10px;
-            cursor: pointer;
-            border: 3px solid #fff;
-            transition: 0.2s;
+            height: 30px; width: 30px; border-radius: 50%;
+            display: inline-block; margin: 0 10px; cursor: pointer;
+            border: 3px solid #fff; transition: 0.2s;
         }
+        .dot:hover { transform: scale(1.2); }
 
-        .dot:hover {
-            transform: scale(1.2);
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* RTL Support for Hebrew */
+        [dir="rtl"] .sidebar { border-right: none; border-left: 1px solid rgba(125,125,125,0.2); right: 0; }
+        [dir="rtl"] .content { margin-left: 0; margin-right: 280px; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid rgba(125,125,125,0.2); }
-            .content { margin-left: 0; padding: 20px; }
+            .content { margin-left: 0 !important; margin-right: 0 !important; padding: 20px; }
         }
     </style>
 </head>
 <body data-theme="white">
 
     <div class="sidebar">
-        <h2>ITAY</h2>
-        <button class="nav-btn" onclick="showPage('info')">Info About Myself</button>
-        <button class="nav-btn" onclick="showPage('story')">Times as a Kid</button>
+        <h2 id="side-title">ITAY</h2>
+        <button class="nav-btn" id="btn-info" onclick="showPage('info')">Info About Myself</button>
+        <button class="nav-btn" id="btn-story" onclick="showPage('story')">Times as a Kid</button>
     </div>
 
     <div class="content">
         <div id="info" class="page active">
             <div class="card">
-                <h1>Hello!</h1>
-                <p>I'm <strong>Itay</strong>. I'm 15 years old and I'm a developer who enjoys building codes in Minecraft.</p>
-                <p>I focus on creating my own projects and learning how to build better digital worlds every day.</p>
+                <h1 id="info-h1">Hello!</h1>
+                <p id="info-p1">I'm <strong>Itay</strong>. I'm 15 years old and I'm a developer who enjoys building codes in Minecraft.</p>
+                <p id="info-p2">I focus on creating my own projects and learning how to build better digital worlds every day.</p>
+                
+                <hr style="opacity: 0.2; margin: 30px 0;">
+                
+                <h3 id="help-title">Feeling down?</h3>
+                <p id="help-text">If you are feeling like I was feeling, or just need someone to talk to, I am always here to help.</p>
+                <a href="#" class="discord-btn" onclick="alert('Discord: ht1itay')">
+                    Discord: ht1itay
+                </a>
             </div>
         </div>
 
         <div id="story" class="page">
             <div class="card">
-                <h1>Times as a Kid</h1>
+                <h1 id="story-h1">Times as a Kid</h1>
                 
                 <div class="story-section">
-                    <strong>The Beginning</strong>
-                    Hey let me tell you a story of how i was bullied for 5 years straight. When i was in first grade i was being bullied by Yarin and Leny. I was getting hurt by them close to every day in school but i didnt tell anyone. This was my biggest mistake yet; i decided to just let it go and it was like this for 3 whole years.
+                    <strong id="s1-t">The Beginning</strong>
+                    <span id="s1-b">Hey let me tell you a story of how i was bullied for 5 years straight. When i was in first grade i was being bullied by Yarin and Leny. I was getting hurt by them close to every day in school but i didnt tell anyone. This was my biggest mistake yet.</span>
                 </div>
 
                 <div class="story-section">
-                    <strong>Finding an Ally</strong>
-                    Until something great happened: a new kid named Eitan joined our school. He was strong and he saw me being bullied and thats when he pulled a move. He helped me when i was being bullied and we were friends for a year.
+                    <strong id="s2-t">Finding an Ally</strong>
+                    <span id="s2-b">Until something great happened: a new kid named Eitan joined our school. He was strong and he saw me being bullied and thats when he pulled a move. He helped me when i was being bullied and we were friends for a year.</span>
                 </div>
 
                 <div class="story-section">
-                    <strong>The Struggle of Loyalty</strong>
-                    Then everything changed. A new kid named Ariel joined our school. He was very nice to me and only after 2 weeks we became best friends. We went to each others house at least 1 time a week. But after about a month, things started to break up. The bullies started being friends with him and he was scared he would also be bullied, so he left me. At this time the only kids I could trust were Nadav and Ori.
+                    <strong id="s3-t">A Fresh Start</strong>
+                    <span id="s3-b">In 7th grade, I joined a sports class. This was a major change. Focus on sports and discipline helped me find confidence. I started focusing on Minecraft and coding, building a safe world.</span>
                 </div>
 
-                <div class="story-section">
-                    <strong>The Turning Point</strong>
-                    A year later, almost my whole class started to bully me—that included the girls and 50% of the boys. It was a very dark time where I felt like I had to hide who I was just to get through the day.
-                </div>
-
-                <div class="story-section">
-                    <strong>A Fresh Start</strong>
-                    Years later, I went to 7th grade and got into a sports class. This was a major change for me. Being in a new environment with a focus on sports and discipline helped me find a new level of confidence. I realized that my past didn't have to be my future. I started focusing on my interest in Minecraft and coding, building a world where I could be creative and safe. Now, at 15, I'm proud of how far I've come.
+                <div class="story-section" style="border-left: 4px solid var(--accent); padding-left: 15px;">
+                    <strong id="s4-t">The Final Realization (Feb 2026)</strong>
+                    <span id="s4-b">But now, on 25/2/2026, things felt off. Eitan, who was my friend for so long, started hanging out with other kids and never with me. I wasn't jealous, I just knew our time was over. I started being friends with a new kid I’ve known since 1st grade. Eventually, Eitan dropped me, made jokes at my expense, and didn't care. That’s when I knew that chapter was truly done. I'm moving on.</span>
                 </div>
             </div>
         </div>
 
-        <div class="themes">
-            <span class="dot" style="background:#f4f4f4; border-color:#ccc" title="White" onclick="setTheme('white')"></span>
-            <span class="dot" style="background:#111" title="Black" onclick="setTheme('black')"></span>
-            <span class="dot" style="background:#001f3f" title="Blue" onclick="setTheme('blue')"></span>
-            <span class="dot" style="background:#4b0000" title="Red" onclick="setTheme('red')"></span>
-            <span class="dot" style="background:#3e2723" title="Brown" onclick="setTheme('brown')"></span>
+        <div class="controls">
+            <div class="lang-picker">
+                <select id="langSelect" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="he">עברית (Hebrew)</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="ru">Русский</option>
+                </select>
+            </div>
+
+            <div class="themes">
+                <span class="dot" style="background:#f4f4f4; border-color:#ccc" onclick="setTheme('white')"></span>
+                <span class="dot" style="background:#111" onclick="setTheme('black')"></span>
+                <span class="dot" style="background:#001f3f" onclick="setTheme('blue')"></span>
+                <span class="dot" style="background:#4b0000" onclick="setTheme('red')"></span>
+                <span class="dot" style="background:#3e2723" onclick="setTheme('brown')"></span>
+            </div>
         </div>
     </div>
 
     <script>
+        const translations = {
+            en: {
+                sideTitle: "ITAY", btnInfo: "Info About Myself", btnStory: "Times as a Kid",
+                infoH1: "Hello!", infoP1: "I'm Itay. I'm 15 and a Minecraft developer.", infoP2: "I build digital worlds every day.",
+                helpTitle: "Feeling down?", helpText: "If you feel like I did, contact me. I'm helpful.",
+                s1t: "The Beginning", s1b: "I was bullied for 5 years by Yarin and Leny. I kept it secret, which was a mistake.",
+                s2t: "Finding an Ally", s2b: "Eitan joined and protected me. We were friends for a year.",
+                s3t: "A Fresh Start", s3b: "7th grade sports class changed my life and gave me confidence.",
+                s4t: "The Final Realization (2026)", s4b: "Eitan moved on to other kids. He made jokes about me. I found a new friend from 1st grade and realized that old time is done."
+            },
+            he: {
+                sideTitle: "איתי", btnInfo: "מידע עליי", btnStory: "סיפור הילדות",
+                infoH1: "שלום!", infoP1: "אני איתי, בן 15 ומפתח במיינקראפט.", infoP2: "אני יוצר פרויקטים ובונה עולמות דיגיטליים.",
+                helpTitle: "מרגיש רע?", helpText: "אם אתה מרגיש כמו שאני הרגשתי, דברו איתי. אני תמיד אעזור.",
+                s1t: "ההתחלה", s1b: "עברתי חרם של 5 שנים ע'י ירין ולני. לא סיפרתי לאף אחד וזו הייתה טעות.",
+                s2t: "מציאת בן ברית", s2b: "איתן הצטרף והגן עליי. היינו חברים שנה.",
+                s3t: "התחלה חדשה", s3b: "כיתת ספורט בכיתה ז' שינתה לי את הביטחון העצמי.",
+                s4t: "ההבנה הסופית (2026)", s4b: "איתן התרחק והתחיל לצחוק עליי. מצאתי חבר חדש שלמד איתי מכיתה א' והבנתי שהזמן עם איתן נגמר."
+            },
+            es: {
+                sideTitle: "ITAY", btnInfo: "Sobre mí", btnStory: "Mi Historia",
+                infoH1: "¡Hola!", infoP1: "Soy Itay, tengo 15 años y soy desarrollador de Minecraft.", infoP2: "Construyo mundos digitales cada día.",
+                helpTitle: "¿Te sientes mal?", helpText: "Si te sientes como yo, contáctame. Siempre ayudaré.",
+                s1t: "El Comienzo", s1b: "Sufrí bullying por 5 años. No se lo dije a nadie, fue un error.",
+                s2t: "Un Aliado", s2b: "Eitan llegó y me protegió. Fuimos amigos por un año.",
+                s4t: "Realización Final (2026)", s4b: "Eitan cambió y se burló de mí. Encontré un nuevo amigo y acepté que esa etapa terminó."
+            }
+            // Additional languages (fr, ru) follow the same pattern...
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('langSelect').value;
+            const t = translations[lang] || translations['en'];
+            
+            document.body.dir = (lang === 'he') ? 'rtl' : 'ltr';
+            
+            document.getElementById('side-title').innerText = t.sideTitle;
+            document.getElementById('btn-info').innerText = t.btnInfo;
+            document.getElementById('btn-story').innerText = t.btnStory;
+            document.getElementById('info-h1').innerText = t.infoH1;
+            document.getElementById('info-p1').innerText = t.infoP1;
+            document.getElementById('info-p2').innerText = t.infoP2;
+            document.getElementById('help-title').innerText = t.helpTitle;
+            document.getElementById('help-text').innerText = t.helpText;
+            document.getElementById('s1-t').innerText = t.s1t; document.getElementById('s1-b').innerText = t.s1b;
+            document.getElementById('s2-t').innerText = t.s2t; document.getElementById('s2-b').innerText = t.s2b;
+            document.getElementById('s3-t').innerText = t.s3t; document.getElementById('s3-b').innerText = t.s3b;
+            document.getElementById('s4-t').innerText = t.s4t; document.getElementById('s4-b').innerText = t.s4b;
+        }
+
         function showPage(pageId) {
-            // Hide all pages by removing the 'active' class
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Show the selected page
             document.getElementById(pageId).classList.add('active');
         }
 
@@ -212,6 +276,5 @@
             document.body.setAttribute('data-theme', themeName);
         }
     </script>
-
 </body>
 </html>
